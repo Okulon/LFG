@@ -1,4 +1,4 @@
-import { getBountyList as nillionGetBountyList } from '../../../../nillion';
+import { getBountyList as nillionGetBountyList } from '../../../../nillion/dist';
 import { NillionError } from './errors';
 import { BountyListParams } from '@/types/nillion';
 
@@ -15,7 +15,7 @@ export async function getBountyList(params?: BountyListParams) {
     };
   } catch (error) {
     console.error('[NillionAPI] Error fetching bounties:', error);
-    throw new NillionError('FETCH_BOUNTIES_ERROR', error);
+    throw NillionError.fromError(error, 'FETCH_BOUNTIES_ERROR');
   }
 }
 
@@ -26,6 +26,6 @@ export async function createBounty(bountyData: any) {
     throw new Error('Not implemented');
   } catch (error) {
     console.error('[NillionAPI] Error creating bounty:', error);
-    throw new NillionError('CREATE_BOUNTY_ERROR', error);
+    throw NillionError.fromError(error, 'CREATE_BOUNTY_ERROR');
   }
 }
